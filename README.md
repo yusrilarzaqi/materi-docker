@@ -46,3 +46,22 @@
 **Diagram Container**
 
 ![Diagram Container](./img/Diagram-Container.png)
+
+### Pengenalan Docker
+
+- Docker adalah salah satu implementasi Container Manager yang saat ini paling populer.
+- Docker merupakan teknologi yang masuh baru, karena baru diperkenalkan sekitar tahun 2013.
+- Docker adalah aplikasi yang free dan Open Soucre, sehingga bisa kita gunakan secara bebas.
+- [Docker](https://www.docker.com/)
+
+#### Arsitektur Docker
+
+- Docker menggunakan arsitektur Client-Server.
+- Docker client berkomunikasi dengan Docker daemon (_server_).
+- Saat kita menginstall Docker, biasanya didalamnya sudah terdapat Docker Client dan Docker Daemon.
+- Docker Client dan Docker Daemon bisa berjalan di satu sistem yang sama.
+- Docker Client dan Docker Daemon berkomunikasi menggunakan REST API.
+
+**Diagram Docker Architecture**
+
+![Diagram Docker Architecture](./img/Diagram-Docker-Architecture.png)
