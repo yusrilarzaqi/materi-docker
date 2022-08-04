@@ -65,3 +65,19 @@
 **Diagram Docker Architecture**
 
 ![Diagram Docker Architecture](./img/Diagram-Docker-Architecture.png)
+
+### Menginstall Docker
+
+- Docker bisa di install hampir disebua sistem operasi.
+- Untuk menginstall di Windows dan Mac, kita bisa menggunakan Docker Desktop.
+- [Get Docker](https://docs.docker.com/get-docker/)
+- Untuk Linux, kita bisa install dari repository sesuai distro linux masing-masing.
+- [Engine install](https://docs.docker.com/engine/install/)
+
+#### Mengecek Docker
+
+- Untuk mengecek apakah Docker Daemon sudah berjalan, kita bisa gunakan perintah docker version.
+
+```sh
+docker version
+```
