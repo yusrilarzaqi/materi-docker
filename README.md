@@ -116,7 +116,7 @@ docker image ls
 - Untuk download Docker Image dari Docker REgistry, kita bisa gunakan pertinah :
 
 ```sh
-docker image pull <namaimage:tag>
+docker image pull namaImage:tag
 ```
 
 - Kita bisa mencari Docker Image yang ingin kita download di[docker hub](https://hub.docker.com/)
@@ -124,7 +124,7 @@ docker image pull <namaimage:tag>
 #### Kode: Download Docker Image
 
 ```sh
-docker image pull mongo:latest
+docker image pull redis:latest
 ```
 
 #### Menghapus Docker Image
@@ -132,5 +132,81 @@ docker image pull mongo:latest
 - Jika kita tidak ingin menggunakan Docker Image yang sudah kita download, kita bisa gunakan perintah :
 
 ```sh
-docker image rm <namaimage:tag>
+docker image rm namaImage:tag
+```
+
+### Docker Container
+
+- Jika Docker Image seperti installer aplikasi, maka Docker Container mirip seperti aplikasi hasil installernya.
+- Satu Docker Image bisa digunakan untuk membuat beberapa Docker Container, asalkan nama Docker Containernya berbeda.
+- Jika kita sudah membuat Docker Container, maka Docker Image yang digunakan tidak bisa dihapus, hal ini dikarenakan sebenarnya Docker Container tidak meng-copy isi Docker Image, tapi hanya menggunakan isinya saja.
+
+#### Status Container
+
+- Saat kita membuat container, secara default container tersebut tidak akan berjalan.
+- Mirip seperti ketika kita menginstall aplikasi, jika tidak kita jalankan, maka aplikasi tersebut tidaka akan berjalan, begitu juga container.
+- Oleh karena itu, setelah membuat container, kita perlu menjalankan jika memasang ingin menjalankan containernya.
+
+#### Melihat Container
+
+- Untuk melihat semua container, baik yang sedang berjalan atau tidak di Docker Daemon, kita bisa gunakan perintah :
+
+```sh
+docker container ls -a
+```
+
+- Sedangkan jika kita ingin melihat container yang sedang berjalan saja, kita bisa gunakan perintah :
+
+```sh
+docker container ls
+```
+
+#### Membuat Container
+
+- Untuk membuat container, kita bisa gunakan perintah :
+
+```sh
+docker container create --name namaContainer namaImage:tag
+```
+
+#### Kode : Membuat Container
+
+```sh
+docker container create --name contohredis redis:latest
+```
+
+#### Menjalankan Container
+
+- Untuk menjalankan container yang sudah kita buat, kita bisa gunakan perintah :
+
+```sh
+docker container start containerId/namaContainer
+```
+
+#### Kode : Menjalankan Container
+
+```sh
+docker container start contohredis
+```
+
+#### Menghentikan Container
+
+- Untuk menghentikan container, kita bisa gunakan perintah :
+
+```sh
+docker container stop namaImage
+```
+
+#### Kode : Menghentikan Container
+
+```sh
+docker container stop contohredis
+```
+
+#### Menghapus Container
+
+- Untuk menghapus container yang sudah berhenti, kita bisa gunakan perintah :
+
+```sh
+docker container rm containerId/namaContainer
 ```
