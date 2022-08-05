@@ -87,8 +87,8 @@ docker version
 - Docker Registry adalah tempat kita menyimpan Docker Image.
 - Dengan menggunakan Docker Registry, kita bisa menyimpan Image yang kita buat, dan bisa digunakan di Docker Daemon dimanapun bisa terkoneksi ke Docker Registry .
 
-**Diagram Docker Registry** 
-![Diagram Docker Registry](./img/Diagram-Docker-Registry.png) 
+**Diagram Docker Registry**
+![Diagram Docker Registry](./img/Diagram-Docker-Registry.png)
 
 #### Contoh Docker Registry
 
@@ -96,4 +96,41 @@ docker version
 - [Digital Ocean Container Registry](https://www.digitalocean.com/products/container-registry/)
 - [Google Cloud Container Registry](https://cloud.goole.com/container-registry)
 - [Amazon Elastic Container Registry](https://aws.amazon.com/id/ecr/)
-- [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/) 
+- [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/)
+
+### Docker Image
+
+- Docker Image mirip seperti installer applikasi, dimana di dalam Docker Image terdapat aplikasi dan dependency.
+- Sebelum kita bisa menjalankan aplikasi di Docker, kita perlu memastikan memiliki Docker Image aplikasi tersebut.
+
+#### Melihat Docker Image
+
+- Untuk melihat Docker Image yang terdapat di dalam Docker Daemon, kita bisa menggunakan perintah :
+
+```sh
+docker image ls
+```
+
+#### Download Docker Image
+
+- Untuk download Docker Image dari Docker REgistry, kita bisa gunakan pertinah :
+
+```sh
+docker image pull <namaimage:tag>
+```
+
+- Kita bisa mencari Docker Image yang ingin kita download di[docker hub](https://hub.docker.com/)
+
+#### Kode: Download Docker Image
+
+```sh
+docker image pull mongo:latest
+```
+
+#### Menghapus Docker Image
+
+- Jika kita tidak ingin menggunakan Docker Image yang sudah kita download, kita bisa gunakan perintah :
+
+```sh
+docker image rm <namaimage:tag>
+```
