@@ -38,8 +38,7 @@
 #### Container
 
 - Berbeda dengan VM,Container sendiri berfokus pada sisi Aplikasi.
-- Container sendiri sebenarnya berjalan diatas aplikasi Container Manager yang berjalan di sistem operasi.
-- Yang membedakan dengan VM adalah, pada Container, kita bisa mem-pcakage aplikasi dan dependency-nya tanpa harus menggabungkan sistem operasi.
+- Container sendiri sebenarnya berjalan diatas aplikasi Container Manager yang berjalan di sistem operasi. Yang membedakan dengan VM adalah, pada Container, kita bisa mem-pcakage aplikasi dan dependency-nya tanpa harus menggabungkan sistem operasi.
 - Container akan menggunakan sistem operasi host dimana Container Manager nya berjalan, oleh karena itu, Container akan lebih hemat resource dan lebih cepat jalan nya, karena tidak butuh sistem operasi sendiri.
 - Ukuran Container biasanya hanya hitungan MB, beberapa dengan VM yang bisa sampai GB karena di dalamnya ada sistem operasinya.
 
@@ -241,3 +240,21 @@ docker container logs -f containerId/namaContainer
 ```sh
 docker container logs contohredis
 ```
+
+### Container Exec
+
+- Saat kita membuat container, aplikasi yang terdapat di dalam container hanya bisa diakses dari dalam container.
+- Oleh karena itu, kadang kita perlu masuk ke dalam containernya itu sendiri.
+- Untuk masuk kedalam container, kita bisa menggunakan fitur `container cxec`, dimana digunakan untuk mengeksekusi kode program yang terdapat di dalam container.
+
+#### Masuk ke Container
+
+- Untuk masuk ke dalam container, kita bisa mencoba mengeksekusi program bash script yang terdapat di dalam container dengan bantuan Container Exec :
+
+```sh
+docker container exec -i -t containerId/namaContainer /bin/bash
+```
+
+- `-i` adalah argument interaktif, menjaga input tetap aktif.
+- `-t` adalah argument untuk alokasi pseudo-TTY (terminal akses).
+- dan `/bin/bash` contoh kode program yang terdapat di dalam container.
