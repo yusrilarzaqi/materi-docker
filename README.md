@@ -245,7 +245,7 @@ docker container logs contohredis
 
 - Saat kita membuat container, aplikasi yang terdapat di dalam container hanya bisa diakses dari dalam container.
 - Oleh karena itu, kadang kita perlu masuk ke dalam containernya itu sendiri.
-- Untuk masuk kedalam container, kita bisa menggunakan fitur `container cxec`, dimana digunakan untuk mengeksekusi kode program yang terdapat di dalam container.
+- Untuk masuk kedalam container, kita bisa menggunakan fitur `container exec`, dimana digunakan untuk mengeksekusi kode program yang terdapat di dalam container.
 
 #### Masuk ke Container
 
@@ -258,3 +258,35 @@ docker container exec -i -t containerId/namaContainer /bin/bash
 - `-i` adalah argument interaktif, menjaga input tetap aktif.
 - `-t` adalah argument untuk alokasi pseudo-TTY (terminal akses).
 - dan `/bin/bash` contoh kode program yang terdapat di dalam container.
+
+#### Container Port
+
+- Saat menjalankan container, container tersebut terisolasi di dalam Docker.
+- Artinya sistem Host (misal Laptop kita), tidak bisa mengakses aplikasi yang ada di dalam container secara langsung, salah satu caranya adalah harus menggunakan Container Exec untuk masuk ke dalam container nya.
+- Biasanya, sebuah aplikasi bekerja pada port tersebut, misal saat kita menjalanakan aplikasi Redis, dia berjalan pada port 6379, kita bisa melihat port apa yang digunakan ketika melihat semua daftar container.
+
+#### Port Forwarding
+
+- Docker memiliki kemampuan untuk melakukan port forwarding, yaitu meneruskan sebuah port yang terdapat di sistem Host nya ke dalam Docker Container.
+- Cara ini cocok juka kita ingin mengekspost port yang terdapat di container ke luar melalui sistem Hostnya.
+
+#### Melakukan Port Forwarding
+
+- Untuk melakukan port forwarding, kita bisa menggunakan perintah berikut ketika membuat containernya :
+
+```sh
+docker container create --name namaContainer --publish postHost:postContainer image:tag
+```
+
+- Jika kita ingin melakukan port forwarding lebih dari satu, kita bisa tambahkan dua kali parameter `--publish`.
+- `--publish` juga bisa disingkat menggunakan `-p`
+
+#### Kode : Melakukan Port Forwarding
+
+```sh
+docker container create --name contohNginx --publish 8080:80 nginx:latest
+
+docker container start contohNginx
+
+docker container ls
+```
