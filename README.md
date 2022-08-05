@@ -210,3 +210,34 @@ docker container stop contohredis
 ```sh
 docker container rm containerId/namaContainer
 ```
+
+#### Kode : Menghapus Container
+
+```sh
+docker container rm contohredis
+```
+
+### Container Log
+
+- Kadang saat terjadi masalah dengan aplikasi yang terdapat di container, sering kali kita ingin melihat detail dari log aplikasinya.
+- Hal ini dilakukan untuk melihat detail kejadian apa yang terjadi di aplikasi, sehingga akan memudahkan kita ketika mendapat masalah.
+
+#### Melihat Container Log
+
+- Untuk melihat log aplikasi di container kita, kita bisa menggunakan perintah :
+
+```sh
+docker container logs containerId/namaContainer
+```
+
+- Atau jika ingin melihat log secara realtime, kita bisa gunakan perintah :
+
+```sh
+docker container logs -f containerId/namaContainer
+```
+
+#### Kode : Melihat Container Log
+
+```sh
+docker container logs contohredis
+```
