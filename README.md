@@ -472,3 +472,17 @@ docker volume rm mongovolume
 | local  | 3213cf0c47f60a9fd51e97d7b138fbccbe8f3bb41456aa171f709d9ef0a6bf08 |
 | local  | b4ce338975ce34e054a96173b82f8cdf5bfffc3be22b20acc7756aaaaea7bdf4 |
 | local  | b59bfe6bc08a9fe8d20045447a7e2b1598debec8764055cdff0c585393bd35fa |
+
+#### Container Volume
+
+- Volume yang sudah kita buat, bisa kita gunakan di container.
+- Keuntungan menggunakan volume adalah, jika container kita hapus, data akan tetap aman di volume.
+- Cara menggunakaan di container sama dengan menggunakan bind mount, kita bisa menggunakan parameter `--mount`, namun dengna menggunakan type volume dan source nama volume.
+
+```sh
+$ docker volume create mongodata
+
+$ docker container create --name mongovolume --mount "type=volume,source=mongodata,destination=/data/db" -publish 27017:27017 --env MONGO_INITDB_ROOT_USERNAME=yusril --env MONGO_INITDB_ROOT_PASSWORD=yusril123  mongo:latest
+
+$ docker container start mongovolume
+```
