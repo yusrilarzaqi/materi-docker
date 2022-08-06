@@ -15,11 +15,13 @@
 - Pengenalan Docker.
 - Menginstall Docker.
 - Arsitektur Docker.
-- Docker
+- Docker :
   - Image.
   - Registry.
   - Container.
-  - Environment Variable
+  - Environment Variable.
+  - Resource Limit.
+  - Bind Mount.
   - Volume.
   - Network
 - Dan lain-lain.
@@ -144,7 +146,7 @@ docker image rm namaImage:tag
 #### Status Container
 
 - Saat kita membuat container, secara default container tersebut tidak akan berjalan.
-- Mirip seperti ketika kita menginstall aplikasi, jika tidak kita jalankan, maka aplikasi tersebut tidaka akan berjalan, begitu juga container.
+- Mirip seperti ketika kita menginstall aplikasi, jika tidak kita jalankan, maka aplikasi tersebut tidak akan berjalan, begitu juga container.
 - Oleh karena itu, setelah membuat container, kita perlu menjalankan jika memasang ingin menjalankan containernya.
 
 #### Melihat Container
@@ -347,6 +349,41 @@ docker container stas
 docker container create --name smallnginx --publish 8081:80 --memory 100m --cpus 0.5 nignx:latest
 
 docker container start smallnginx
+
+docker container ls
+```
+
+### Bind Mounts
+
+- Bind Mounts merupakan kemampuan melakukan mounting (sharing) file atau folder yang terdapat di sistem host ke container yang terdapat di docker.
+- Fitur ini sangat berguna ketika misal kita ingin mengirim konfigurasi dari luar container, atau misal menyimpan data yang dibuat di aplikasi di dalam container ke dalam folder di sistem host.
+- Jika file atau folder tidak ada di sistem host, secara otomatis akan dibuatkan oleh Docker.
+- Untuk melakukan mounting, kita bisa menggunakan parameter `--mount` ketika membuat container.
+- Isi dari parameter `--mount` memiliki aturan tersendiri.
+
+#### Parameter Mount
+
+| Parameter   | Keterangan                                                                        |
+| ----------- | --------------------------------------------------------------------------------- |
+| type        | Tipe mount, bind atau volume                                                      |
+| soruce      | Lokasi file atau folder di sistem host                                            |
+| destination | Lokasi file atau folder di container                                              |
+| readonly    | Jika ada, maka file atau folder hanya bisa dibaca di container tidak bisa ditulis |
+
+#### Melakukan Mounting
+
+- Untuk melakukan mounting, kita bisa menggunakan perintah berikut :
+
+```sh
+docker container create --name namaContainer --mount "type:bind,source=folder,destination=folder,readonly" image:tag
+```
+
+#### Kode : Melakukan Mounting
+
+```sh
+docker container create --name mongodata --mount "type=bind,source=/home/yusril/Documents/materi-docker/mongo-data,destination=/data/db" --publish 27017:27017 --env MONGO_INITDB_ROOT_USERNAME=yusril --env MONGO_INITDB_ROOT_PASSWORD=yusril123 mongo:latest
+
+docker container start mongodata
 
 docker container ls
 ```
