@@ -115,7 +115,7 @@ docker image ls
 
 #### Download Docker Image
 
-- Untuk download Docker Image dari Docker REgistry, kita bisa gunakan pertinah :
+- Untuk download Docker Image dari Docker REgistry, kita bisa gunakan perintah :
 
 ```sh
 docker image pull namaImage:tag
@@ -387,3 +387,88 @@ docker container start mongodata
 
 docker container ls
 ```
+
+### Docker Volume
+
+- Fitur Bind Mounts sudah ada sejak Docker versi awal, di versi terbaru direkomendasikan menggunakan **Docker Volume**.
+- Docker Volume mirip dengan Bind Mounts, bedanya adalah terdapat management Volume, dimana kita bisa membuat Volume, melihat daftar Volume, dan menghapus Volume.
+- Volume sendiri bisa dianggap storage yang digunakan untuk menyimpan data, bedanya dengan Bind Mounts, pada bind, data disimpan pada sistem host, sedangkan pada volume, data di manage oleh Docker.
+
+#### Melihat Docker Volume
+
+- Saat kita membuat container, dimanakah data di dalam container itu disimpan, secara default semua data container disimpan di dalam volume.
+- jika kita coba melihat docker volume, kita akan lihat bahwa ada banyak volume yang sudah terbuat, walaupun kita belum pernah membuatnya sama sekali.
+- Kita bisa gunakan perintah berikut untuk melihat daftar volume :
+
+```sh
+docker volume ls
+```
+
+#### Kode : Melihat Volume
+
+```sh
+docker volume ls
+```
+
+| DRIVER | VOLUME NAME                                                      |
+| ------ | ---------------------------------------------------------------- |
+| local  | 6b7abb869d59505c94f3338da3f29c8cfdc1dd56522ce52f6d7edadebb4be973 |
+| local  | 13d1871d1ce2053031454e4c21518c65aa60620211775d66a0d552d5200fd14b |
+| local  | 64b632ac5cc319057feceba9310dcf8ab6b6856cee0fbccba50082ad7f3ae31c |
+| local  | 160a2ac355db94a0705d2fcda08a4115e97651b56ef64188ba99df72248f4c28 |
+| local  | 533e5c4d64347d02f165462e4ffe2c4fb53e18754f1f012474227a7c8ba1f45d |
+| local  | 3213cf0c47f60a9fd51e97d7b138fbccbe8f3bb41456aa171f709d9ef0a6bf08 |
+| local  | b4ce338975ce34e054a96173b82f8cdf5bfffc3be22b20acc7756aaaaea7bdf4 |
+| local  | b59bfe6bc08a9fe8d20045447a7e2b1598debec8764055cdff0c585393bd35fa |
+
+#### Membuat Volume
+
+- Untuk membuat volume, kita bisa gunakan perintah :
+
+```sh
+docker volume create namaVolume
+```
+
+#### Kode : Membuat Volume
+
+```sh
+docker volume create mongovolume
+```
+
+| DRIVER | VOLUME NAME                                                      |
+| ------ | ---------------------------------------------------------------- |
+| local  | 6b7abb869d59505c94f3338da3f29c8cfdc1dd56522ce52f6d7edadebb4be973 |
+| local  | 13d1871d1ce2053031454e4c21518c65aa60620211775d66a0d552d5200fd14b |
+| local  | 64b632ac5cc319057feceba9310dcf8ab6b6856cee0fbccba50082ad7f3ae31c |
+| local  | 160a2ac355db94a0705d2fcda08a4115e97651b56ef64188ba99df72248f4c28 |
+| local  | 533e5c4d64347d02f165462e4ffe2c4fb53e18754f1f012474227a7c8ba1f45d |
+| local  | 3213cf0c47f60a9fd51e97d7b138fbccbe8f3bb41456aa171f709d9ef0a6bf08 |
+| local  | b4ce338975ce34e054a96173b82f8cdf5bfffc3be22b20acc7756aaaaea7bdf4 |
+| local  | b59bfe6bc08a9fe8d20045447a7e2b1598debec8764055cdff0c585393bd35fa |
+| local  | mongovolume                                                      |
+
+#### Menghapus Volume
+
+- Volume yang tidak digunakan oleh container bisa kita hapus, tapi jika volume digunakan oleh container, maka tidak bisa kita hapus sampai container nya dihapus.
+- Untuk menghapus volume, bisa kita gunakan perintah
+
+```sh
+docker volume rm namaVolume
+```
+
+#### Kode menghapus Volume
+
+```sh
+docker volume rm mongovolume
+```
+
+| DRIVER | VOLUME NAME                                                      |
+| ------ | ---------------------------------------------------------------- |
+| local  | 6b7abb869d59505c94f3338da3f29c8cfdc1dd56522ce52f6d7edadebb4be973 |
+| local  | 13d1871d1ce2053031454e4c21518c65aa60620211775d66a0d552d5200fd14b |
+| local  | 64b632ac5cc319057feceba9310dcf8ab6b6856cee0fbccba50082ad7f3ae31c |
+| local  | 160a2ac355db94a0705d2fcda08a4115e97651b56ef64188ba99df72248f4c28 |
+| local  | 533e5c4d64347d02f165462e4ffe2c4fb53e18754f1f012474227a7c8ba1f45d |
+| local  | 3213cf0c47f60a9fd51e97d7b138fbccbe8f3bb41456aa171f709d9ef0a6bf08 |
+| local  | b4ce338975ce34e054a96173b82f8cdf5bfffc3be22b20acc7756aaaaea7bdf4 |
+| local  | b59bfe6bc08a9fe8d20045447a7e2b1598debec8764055cdff0c585393bd35fa |
