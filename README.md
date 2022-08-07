@@ -477,7 +477,7 @@ docker volume rm mongovolume
 
 - Volume yang sudah kita buat, bisa kita gunakan di container.
 - Keuntungan menggunakan volume adalah, jika container kita hapus, data akan tetap aman di volume.
-- Cara menggunakaan di container sama dengan menggunakan bind mount, kita bisa menggunakan parameter `--mount`, namun dengna menggunakan type volume dan source nama volume.
+- Cara menggunakan di container sama dengan menggunakan bind mount, kita bisa menggunakan parameter `--mount`, namun dengna menggunakan type volume dan source nama volume.
 
 ```sh
 $ docker volume create mongodata
@@ -485,4 +485,46 @@ $ docker volume create mongodata
 $ docker container create --name mongovolume --mount "type=volume,source=mongodata,destination=/data/db" -publish 27017:27017 --env MONGO_INITDB_ROOT_USERNAME=yusril --env MONGO_INITDB_ROOT_PASSWORD=yusril123  mongo:latest
 
 $ docker container start mongovolume
+```
+
+### Backup Volume
+
+- Sayangnya, sampai saat ini, tidak ada cara otomatis melakukan backup volume yang sudah kita buat.
+- Namun kita bisa memanfaatkan container untuk melakukan backp data yang ada di dalam volume ke dalam archive seperti `zip` atau `tar.gz`.
+
+#### Tahapan Melakukan Backup
+
+- Matikan container yang menggunakan volume yang ingin kita backup.
+- Buat container degnan dua mount, volume yang ingin kita backup, dan bind mount folder dari sistem host.
+- Lakukan backup menggunakan container dengan cara meng-archive isi volume, dan simpan di bind mount folder.
+- Isi file backup sekarang ada di folder host.
+- Delete container yang kita gunakan untuk melakukan backup.
+
+#### Kode : Membuat Backup Container
+
+```sh
+$ docker container create --name nginxbackup --mount "type=bind,source=/home/yusril/Documents/materi-docker/backup,destination=/backup" --mount "type=volume,source=mongodata,destination=/data" nginx:latest
+
+$ docker container exec -it nginxbackup /bin/bash
+
+$ tar cvf /backup/backup.tar.gz /data
+
+$ docker stop nginxbackup
+
+$ docker container rm nginxbackup
+
+$ docker start mongovolume
+```
+
+#### Menjalankan Container Secara Langsung
+
+- Melakukan backup secara manual agak sedikit ribet karena kita harus start container terlebih dahulu, setelah backup, hapus containernya lagi.
+- Kita bisa menggunakan perintah `run` untuk menjalankan perintah di container dan gunakan parameter `--rm` untuk melakukan otomatis remove container setelah perintahnya selesai berjalan.
+
+#### Kode : Backup Dengan Container Run
+
+```sh
+$ docekr stop mongovolume
+
+$ docker container run --rm --name ubuntu --mount "type=bind,source=/home/yusril/Documents/materi-docker/backup/,destination=/backup" --mount "type=volume,source=mongodata,destination=/data" ubuntu:latest tar cvf /backup/backup1.tar.gz /data
 ```
