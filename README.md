@@ -552,3 +552,88 @@ $ docker volume create mongorestore
 
 $ docker container run --rm --name ubuntubackup --mount "type=bind,source=/home/yusril/Documents/materi-docker/backup,destination=/backup" --mount "type=volume,source=mongorestore,destination=/data" ubuntu:latest bash -c "cd /data/db && tar xvf /backup/backup.tar.gz --strip 1"
 ```
+
+### Docker Network
+
+- Saat kita membuat container di docker, secara default container akan saling terisolasi satu sama lain, jadi jika kita mencoba memanggil antar container, bisa dipastikan bahwa kita tidak akan bisa melakukannya.
+- Docker memiliki fitur Network yang bisa digunakan untuk membuat jaringan di dalam Docker.
+- Dengan menggunakan Network, kita bisa mengkoneksikan container dengan container lain dalam satu Network yang sama.
+- Jika beberapa container terdapat pada satu Network yang sama, maka secara otomatis container tersebut bisa saling berkomunikasi.
+
+#### Network Driver
+
+- Saat kita membuat Network di Docker, kita perlu menentukan driver yang ingin kita gunakan, ada banyak driver yang bisa kita gunakan, tapi kadang ada syarat sebuah driver network bisa kita gunakan.
+- _bridge_, yaitu driver yang digunakan untuk membuat network secara vitual yang memungkinkan container yang terkoneksi di bridge network yang sama saling berkomunikasi.
+- _host_, yaitu driver yang digunakan untuk membuat network yang sama dengan sistem host. Host hanya jalan di Docker Linux, tidak bisa digunakan di Mac atau Windows.
+- _none_, yaitu driver yang membuat network yang tidak bisa berkomunikasi.
+
+#### Melihat Network
+
+- Untuk melihat network di Docker, kita bisa gunakan perintah :
+
+```sh
+docker network ls
+```
+
+#### Kode Melihat Network
+
+```sh
+docker network ls
+```
+
+| NETWORK ID   | NAME   | DRIVER | SCOPE |
+| ------------ | ------ | ------ | ----- |
+| db7a63dc66ab | bridge | bridge | local |
+| 477a49b3d086 | host   | host   | local |
+| 53dbcbfb730b | none   | null   | local |
+
+#### Membuat Network
+
+- Untuk membuat network baru, kita bisa menggunakan perintah :
+
+```sh
+docker network create --driver namaDriver namaNetwork
+```
+
+> default value untuk driver adalah bridge
+
+#### Kode : Membuat Network
+
+```sh
+$ docker network create --driver bridge contohnetwork
+
+0d2cee0ee546dd400b0e6262899ad4b25f0ef4dfdd11f1b3e8bd55bf95a98b5f
+
+$ docker network ls
+
+NETWORK ID     NAME            DRIVER    SCOPE
+db7a63dc66ab   bridge          bridge    local
+0d2cee0ee546   contohnetwork   bridge    local
+477a49b3d086   host            host      local
+53dbcbfb730b   none            null      local
+```
+
+#### Menghapus Network
+
+- Untuk menghapus Network, kita bisa gunakan perintah :
+
+```sh
+docker network rm namaNetwork
+```
+
+- Network tidak bisa dihapus jika sudah digunakan oleh container. Kita harus menghapus container nya terlebih dahulu dari Network.
+
+#### Kode : Menghapus Network
+
+```sh
+$ docker network rm contohnetwork
+
+contohnetwork
+
+$ docker network ls
+
+NETWORK ID     NAME            DRIVER    SCOPE
+db7a63dc66ab   bridge          bridge    local
+477a49b3d086   host            host      local
+53dbcbfb730b   none            null      local
+```
