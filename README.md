@@ -23,6 +23,8 @@
   - Resource Limit.
   - Bind Mount.
   - Volume.
+  - Volume Backup.
+  - Volume Restore
   - Network
 - Dan lain-lain.
 
@@ -527,4 +529,26 @@ $ docker start mongovolume
 $ docekr stop mongovolume
 
 $ docker container run --rm --name ubuntu --mount "type=bind,source=/home/yusril/Documents/materi-docker/backup/,destination=/backup" --mount "type=volume,source=mongodata,destination=/data" ubuntu:latest tar cvf /backup/backup1.tar.gz /data
+```
+
+### Restore Volume
+
+- Setelah melakukan backup volume ke dalam file archive, kita bisa menyimpan file archive backup tersebut ke tempat yang lebih aman, misal ke cloud storage.
+- Sekarang kita kana coba melakukan restore data backup ke volume baru, untuk memastikan data backup yang kita lakukan tidak corrupt.
+
+#### Tahapan Melakukan Restore
+
+- Buat volume baru untuk lokasi restore data backup.
+- Buat container baru dengan dua mount, volume baru untuk restore backup, dan bind mount folder dari sistem host yang berisi file backup.
+- Lakukan restore menggunakan container dengan cara meng-extract isi backup file ke dalam volume.
+- Isi file backup sekarang sudah di resotre ke volume.
+- Delete container yang kita gunakan untuk melakukan resotre.
+- Volume baru yang berisi data backup siap digunakan oleh container baru.
+
+#### Kode : Restore Backup
+
+```sh
+$ docker volume create mongorestore
+
+$ docker container run --rm --name ubuntubackup --mount "type=bind,source=/home/yusril/Documents/materi-docker/backup,destination=/backup" --mount "type=volume,source=mongorestore,destination=/data" ubuntu:latest bash -c "cd /data/db && tar xvf /backup/backup.tar.gz --strip 1"
 ```
