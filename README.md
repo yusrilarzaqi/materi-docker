@@ -716,3 +716,96 @@ docker network connect namaNetwork namaContainer
 - Untuk melihat detail dari volume, gunakan : `docker volume inspect namaVolume`
 - Untuk melihat detail dari network, gunakan : `docker network inspect namaNetwork`
 
+### Prune
+
+- Saat kita menggunakan Docker, kadang ada kalanya kita ingin membersihkan hal-hal yang sudah tidak digunakan lagi di Docker, misal container yang sudah di stop, image yang tidak digunakan oleh container, atau volume yang tidak digunakan oleh container.
+- Fitur untuk membersihkan secara otomatis di Docker bernama `prune`.
+- Hampir di semua perintah di Docker mendukung `prune`.
+
+#### Perintah Prune
+
+- Untuk menghapus semua container yang sudah stop, gunakan : `docker container prune`.
+- Untuk menghapus semua image yang sudah stop, gunakan : `docker image prune`.
+- Untuk menghapus semua network yang sudah stop, gunakan : `docker network prune`.
+- Untuk menghapus semua volume yang sudah stop, gunakan : `docker volume prune`.
+- Atau kita bisa menggunakan satu perintah untuk menghapus container, network dan image yang sudah tidak digunakan menggunakan perintah : `docker system prune`.
+
+#### Kode : Menggunakan Prune
+
+```
+$ docker image prune
+
+WARNING! This will remove all dangling images.
+Are you sure you want to continue? [y/N] y
+Total reclaimed space: 0B
+
+$ docker network prune
+
+WARNING! This will remove all custom networks not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Networks:
+mongonetwork
+
+$ docker volume prune
+
+WARNING! This will remove all local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+3213cf0c47f60a9fd51e97d7b138fbccbe8f3bb41456aa171f709d9ef0a6bf08
+dfcf434bb925b2a12ec3b8b4eb4a9bc9cab61d0d3b3a582a0e63162ee312e383
+d618893d3d0b1d7a26de782c643ee80a0478e8d2fa06bbd70ea0a01f9c0228c2
+6b98b2b4faef8190c664591c6c1426cfecf8f2fecdc326559ebdc8f7762ad7e8
+64b632ac5cc319057feceba9310dcf8ab6b6856cee0fbccba50082ad7f3ae31c
+1aa0cea1d1f4a6c11b9c7680897cd75b445f2811289aa1738684926e30ae1e09
+7f71d54c7e88752555b4c1a4b9f992990957f359f7a171389f06fc2d1cd8a8aa
+f532ffd3a3abc829c7b8b565c444ad29d20a8683c05b0250334a8dbffcb74805
+b22c91814018a3b1f1aa2796afe424ef96ae743a09217ea181e303fa0eb2b65f
+d0005561541a2af5a230da4de4ee9dd2cfeb32f230a9d4908fe4de194e561dbd
+e27e64f512e38b2d22861193364951526850a4b1228db15e765af9205346d9d4
+7fa29b2c5d5ce82a5bd4ac693e6b8078343a2c6befa9c75605ac8200091ed137
+746c8d5c6080618408a290c500b1da5c30286783cc1776d90de84d6fafd59d8f
+99a2c33dd4ec6f827d6dd5fca8660820911ce72162c6294d358e1ce98d64e207
+728884bcf2b349c54125403b9f0c9b2e14ef9dc4ae83650694292e442e6c44ca
+6b7abb869d59505c94f3338da3f29c8cfdc1dd56522ce52f6d7edadebb4be973
+ceedc7c98d1af3158ddb700a3af132c94ae079afc09e0b10e30cf023ad1eb393
+69aa492af09ea3e157a48c65e31d6dd27700cf9c01b23ce8cfcfd81301ca6a15
+81c6de077ebfd5d266528683770194fd34f4fe4a8460092ffccc38fff7902c36
+264869ad9e1e8cd95da1d34ec8a83d79e667141083c7186f838052c456e784cb
+b59bfe6bc08a9fe8d20045447a7e2b1598debec8764055cdff0c585393bd35fa
+caa51eb6c1341bec7e360806f53c25d83d2d6beb2033a533a07a5183b00dc247
+13d1871d1ce2053031454e4c21518c65aa60620211775d66a0d552d5200fd14b
+
+Total reclaimed space: 2.522GB
+
+$ docker container prune
+
+WARNING! This will remove all stopped containers.
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+4e5d1cfd79c2be3b26ef0bb50a169b2d3d100ff4ff3c5024f9103dad8a373bf7
+94a06afe51209d4f287036bb9e76395471bafecb1e4745055457c0f66ff1e999
+c7ed39c2a02f4de82a5f1a122bb1bed5304e973614095fbd2779356898a42596
+19b73d8b07a770d1137575f6bcfcecf3abcfd9dec5e1c40cde88c11be239ef6c
+b732e94eb852c197e2db3d249d420e25d16e69ef02762a61c6d3cda56c7b2d39
+b8988c80203b8c7291d24df8f244440cfd9cad18cd6f16296768d1b81cda35bd
+37412b9b06377f135909ea9133a2137599843173332045b2fd5769821e5f8f8d
+a3698a74239cb02e9e18a290a323b3758f1dacd6d3dd3746ce396e0c5e1efac1
+
+Total reclaimed space: 1.274kB
+
+$ docker system prune
+
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N] y
+Total reclaimed space: 0B
+```
+
+### Materi Selanjutnya
+
+- Dockerfile
+- Docker Compose
