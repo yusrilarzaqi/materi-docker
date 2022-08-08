@@ -1,0 +1,30 @@
+[
+    {
+        "Name": "mongonetwork",
+        "Id": "8ced4d99282e8495fe4f05c28db4cb6e187562966052bd2e4f2a2220bb68d568",
+        "Created": "2022-08-07T20:49:35.941974073+07:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.19.0.0/16",
+                    "Gateway": "172.19.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]

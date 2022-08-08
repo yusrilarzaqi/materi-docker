@@ -1,0 +1,115 @@
+[
+    {
+        "Id": "sha256:3e42dd4e79c7b6e416d06dde0de3e8b6cc73bf8f59dea9d3f784ac63cf4665a9",
+        "RepoTags": [
+            "redis:latest"
+        ],
+        "RepoDigests": [
+            "redis@sha256:9bc34afe08ca30ef179404318cdebe6430ceda35a4ebe4b67d10789b17bdf7c4"
+        ],
+        "Parent": "",
+        "Comment": "",
+        "Created": "2022-08-02T12:40:06.412979617Z",
+        "Container": "5096cecc5130602f4b743a9791c7cbde7a6e827c383609689f4b41f6ce5b52b8",
+        "ContainerConfig": {
+            "Hostname": "5096cecc5130",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "6379/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.14",
+                "REDIS_VERSION=7.0.4",
+                "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-7.0.4.tar.gz",
+                "REDIS_DOWNLOAD_SHA=f0e65fda74c44a3dd4fa9d512d4d4d833dd0939c934e946a5c622a630d057f2f"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"redis-server\"]"
+            ],
+            "Image": "sha256:6be94c1612ab7a099aa87c4af3490344e7d9b7f7fe92a706322c3786750b0bc1",
+            "Volumes": {
+                "/data": {}
+            },
+            "WorkingDir": "/data",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "DockerVersion": "20.10.12",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "6379/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.14",
+                "REDIS_VERSION=7.0.4",
+                "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-7.0.4.tar.gz",
+                "REDIS_DOWNLOAD_SHA=f0e65fda74c44a3dd4fa9d512d4d4d833dd0939c934e946a5c622a630d057f2f"
+            ],
+            "Cmd": [
+                "redis-server"
+            ],
+            "Image": "sha256:6be94c1612ab7a099aa87c4af3490344e7d9b7f7fe92a706322c3786750b0bc1",
+            "Volumes": {
+                "/data": {}
+            },
+            "WorkingDir": "/data",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 116799009,
+        "VirtualSize": 116799009,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/9ab68eb3eba5a2f5187ed3554ccdf55c0ca1cfde82705355f357e55a8c229606/diff:/var/lib/docker/overlay2/768d454fd9c6ae0a458f52e90446df01907e89926c3926329d30f3519f4c1af1/diff:/var/lib/docker/overlay2/d2280d7a12989e487b0602ac53bb1e76f58e6fcc113e71a5fd69b0b765f55d2f/diff:/var/lib/docker/overlay2/63eb65ef5d7c7160fe3c52e2d9d25642f1fd8a621df681dd17540bbf057b8017/diff:/var/lib/docker/overlay2/9f268be6c36270e06b38c16bf7053009b2f99b97c59965353a77ff7fa25df831/diff",
+                "MergedDir": "/var/lib/docker/overlay2/7ae7228ebb54a5be4e80af0d1c39d158b166a05d72c8c17419a2b7fe24cbc26e/merged",
+                "UpperDir": "/var/lib/docker/overlay2/7ae7228ebb54a5be4e80af0d1c39d158b166a05d72c8c17419a2b7fe24cbc26e/diff",
+                "WorkDir": "/var/lib/docker/overlay2/7ae7228ebb54a5be4e80af0d1c39d158b166a05d72c8c17419a2b7fe24cbc26e/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:92a4e8a3140f7a04a0e5a15793adef2d0e8889ed306a8f95a6cfb67cecb5f212",
+                "sha256:a43bd94dc1da04cd0e0aa2ab59c6ebd4f327ec7303d479d9f94d16a2e33bb389",
+                "sha256:be653abfb1ebb6c7a687e92bce6da4b4d77181d79da6c4809ac01ba2559b6cb9",
+                "sha256:e65bbf45efd90444923a4b489a0cb0e2670d0220bf8a548c78d52dbe07d33d4c",
+                "sha256:106dd27bf61fdf52af51a0a01e2ac84447aebf266da5881f76b03e24273c94f9",
+                "sha256:03598b7f0dd4e725142c684d29310e099ff6d31d3b769a72bb578837d6594a8b"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
