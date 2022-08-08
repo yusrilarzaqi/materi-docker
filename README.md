@@ -878,8 +878,8 @@ FROM image:version
 
 #### Kode : Docker Build
 
-```sh
-docker build -t yusrilarzaqi/simple simple
+```
+$ docker build -t yusrilarzaqi/simple simple
 
 Sending build context to Docker daemon  2.048kB
 Step 1/1 : FROM alpine:3
@@ -889,4 +889,83 @@ Status: Downloaded newer image for alpine:3
  ---> d7d3d98c851f
 Successfully built d7d3d98c851f
 Successfully tagged yusrilarzaqi/from:latest
+```
+
+### Run Instruction
+
+- `RUN` adalah sebuah instruksi untuk mengeksekusi perintah di dalam image pada saat build stage.
+- Hasil perintah `RUN` akan di commitkan dalam perubahan image tersebut, jadi perintah `RUN` akan dieksekusi pada saat proses docker build saja, setelah menjadi Docker Image, perintah tersebut tidak akan dijalankan lagi.
+- Jadi ketika kita menjalankan Docker Container dari Image tersebut, maka perintah `RUN` tidak akan dijalankan lagi.
+
+#### Run Instruction Format
+
+- Perintah `RUN` memiliki 2 format.
+- `RUN` command.
+- `RUN ["executable", "argument", "..."]`
+
+#### Kode : Run Instruction
+
+```dockerfile
+FROM alpine:3
+
+RUN mkdir hello
+RUN echo "Hello world" > "hello/world.txt"
+RUN cat "hello/world.txt"
+```
+
+```
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM alpine:3
+ ---> d7d3d98c851f
+Step 2/4 : RUN mkdir hello
+ ---> Running in 96c620c28cac
+Removing intermediate container 96c620c28cac
+ ---> 86ed97fbd50e
+Step 3/4 : RUN echo "Hello World" > "hello/world.txt"
+ ---> Running in 226ca4a50175
+Removing intermediate container 226ca4a50175
+ ---> d38c2f80d723
+Step 4/4 : RUN cat "hello/world.txt"
+ ---> Running in a30de83b7447
+Hello World
+Removing intermediate container a30de83b7447
+ ---> d4934f458b05
+Successfully built d4934f458b05
+Successfully tagged yusrilarzaqi/run:latest
+```
+
+#### Display Output
+
+- Secara default, di docker tidak akan menampilkan tulisan detail dari build-nya.
+- Jika kita ingin menampilkan detailnya, kita bisa gunakan perintah `--progress=plain`.
+- Selain itu juga docker build juga melakukan cache, jika kita ingin mengulangi lagi tanpa menggunakan cache, kita bisa gunakan perintah `--no-cache`.
+
+#### Kode : Display Output
+
+```
+$ docker build -t yusrilarzaqi/run run  --progress=plain --no-cache
+
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM alpine:3
+ ---> d7d3d98c851f
+Step 2/4 : RUN mkdir hello
+ ---> Running in c7d28a035d18
+Removing intermediate container c7d28a035d18
+ ---> 328011ce1502
+Step 3/4 : RUN echo "Hello World" > "hello/world.txt"
+ ---> Running in 40af2ecb3dd0
+Removing intermediate container 40af2ecb3dd0
+ ---> 06a69b27da45
+Step 4/4 : RUN cat "hello/world.txt"
+ ---> Running in ff5a114e2a08
+Hello World
+Removing intermediate container ff5a114e2a08
+ ---> 5a524f4116a6
+Successfully built 5a524f4116a6
+Successfully tagged yusrilarzaqi/run:latest
+
+$ docker image ls
+
+REPOSITORY          TAG       IMAGE ID       CREATED          SIZE
+yusrilarzaqi/run    latest    5a524f4116a6   31 seconds ago   5.52MB
 ```
