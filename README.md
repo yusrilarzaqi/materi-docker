@@ -864,3 +864,29 @@ INSTRUCTION arguments
 - `# digunakan untuk menambah komentar, kode dalam baris tersebut secara otomatis dianggap komentar`.
 - `INSTRUCTION` adalah perintah yang digunakan di Dockerfile, ada banyak perintah yang tersedia, dan penulisan printahnya case insensitive, sehingga kita bisa gunakan huruf banyak atau kecil. Namun rekomendasinya adalah menggunakan `UPPPER CASE`.
 - `Arguments` adalah data argument untuk `INSTRUCTION`, yang menyesuaikan dengan jenis `INSTRUCTION` yang digunakan.
+
+### From Instruction
+
+- Saat kita membuat Docker Image, biasanya perintah pertama adalah melakukan build stage dengan instruksi `FROM`.
+- `FROM` digunakan untuk membuat build stage dari image yang kita tentukan.
+- Biasanya, jarang sekali kali akan membuat Docker Image dari scratch (kosongan), biasanya kita akan membuat Docker Image dari Docker Image lain yang sudah ada.
+- Untuk menggunakan `FROM`, kita bisa gunakan perintah :
+
+```sh
+FROM image:version
+```
+
+#### Kode : Docker Build
+
+```sh
+docker build -t yusrilarzaqi/simple simple
+
+Sending build context to Docker daemon  2.048kB
+Step 1/1 : FROM alpine:3
+3: Pulling from library/alpine
+Digest: sha256:7580ece7963bfa863801466c0a488f11c86f85d9988051a9f9c68cb27f6b7872
+Status: Downloaded newer image for alpine:3
+ ---> d7d3d98c851f
+Successfully built d7d3d98c851f
+Successfully tagged yusrilarzaqi/from:latest
+```
