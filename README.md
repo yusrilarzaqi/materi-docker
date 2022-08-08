@@ -26,9 +26,10 @@
   - Volume Backup.
   - Volume Restore
   - Network
+  - Inspect.
+  - Prune.
 - Container:
   - Network.
-- Inspect.
 - Dan lain-lain.
 
 ### Pengenalan Container
@@ -809,3 +810,39 @@ Total reclaimed space: 0B
 
 - Dockerfile
 - Docker Compose
+
+## Docker Dockerfile
+
+### Agenda
+
+- Pengenalan Dockerfile.
+- Dockerfile Format.
+- From Instruction.
+- Label Instruction.
+- Environment Variable Instruction.
+- Entrypoint Instruction.
+- Volume Instruction.
+- Dan lain-lain.
+
+### Pengenalan Dockerfile
+
+- Pada kelas Docker Dasar, kita sudah banyak belajar bagaimana carj Docker, dari menggunakan Docker Image, sampai membuat Docker Container.
+- Sekarang bagaimana jika ingin membuat Docker Container.
+- Pembuatan Docker Image bisa dilakukan dengan menggunakan instruksi yang kita simpan di dalam file Dockerfile.
+
+#### Dockerfile
+
+- Dockerfile adalah file text yang berisi semua perintah yang bisa kita gunakan untuk membuat sebuah Docker Image.
+- Anggap saja semua instruksi untuk, menjalankan aplikasi kita, kita simpan didalam Dockerfile, nanti Dockerfile tesebut akan dieksekusi sebagai perintah untuk membuat Docker Image.
+
+#### Docker Build
+
+- Untuk membuat Docker Image dari Dockerfile, kita bisa menggunakan perintah `docker build`.
+- Saat membuat Docker Image dengan `docker build`, nama image secara otomatis akan dibuat random, dan biasanya kita ingin menambahkan nama/tag pada image nya, kita bisa mengubahnya dengan menambahkan perintah `-t`.
+- Misal berikut adalah contoh cara menggunakan docker build :
+
+```sh
+docker build -t yusril/app:1.0.0 folder-dockerfile
+
+docker build -t yusril/app:1.0.0 -t yusril/app:latest folder-dockerfile
+```
