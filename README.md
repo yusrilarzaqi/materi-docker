@@ -969,3 +969,71 @@ $ docker image ls
 REPOSITORY          TAG       IMAGE ID       CREATED          SIZE
 yusrilarzaqi/run    latest    5a524f4116a6   31 seconds ago   5.52MB
 ```
+
+### Command Instruction
+
+- CMD atau Command, merupakan instruksi yang digunakan ketika Docker Container berjalan.
+- CMD tidak akan dijalankan ketika proses build, namun dijalankan ketika Docker Container berjalan.
+- Dalam Docker file, kita tidak bisa menambah lebih dari satu instruksi CMD, jika kita tambahkan lebih dari satu instruksi CMD, maka yang akan digunakan untuk menjalankan Docker Container adalah instruksi CMD yang terakhir.
+
+#### Commaand Instruction Format
+
+- Perintah CMD memiliki beberapa format :
+- `CMD command param param`.
+- `CMD ["executable", "param", "param"]`.
+- `CMD ["param", "param"]`, akan menggunakan executable `ENTRY POINT`, yang akan dibahas di chapter terpisah.
+
+#### Kode : Command Instruction
+
+```dockerfile
+FROM alpine:3
+
+RUN mkdir hello
+RUN echo "Hello World" > "hello/world.txt"
+
+CMD cat "hello/world.txt"
+```
+
+```
+$ docker build -t yusrilarzaqi/command command
+
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM alpine:3
+ ---> d7d3d98c851f
+Step 2/4 : RUN mkdir hello
+ ---> Using cache
+ ---> 328011ce1502
+Step 3/4 : RUN echo "Hello World" > "hello/world.txt"
+ ---> Using cache
+ ---> 06a69b27da45
+Step 4/4 : CMD cat "hello/world.txt"
+ ---> Running in 011ed19e94cd
+Removing intermediate container 011ed19e94cd
+ ---> 6a8036ec7321
+Successfully built 6a8036ec7321
+Successfully tagged yusrilarzaqi/command:latest
+
+$ docker image inspect yusrilarzaqi/command
+
+"Cmd": [
+  "/bin/sh",
+  "-c",
+  "cat \"hello/world.txt\""
+],
+```
+
+#### Kode : Docker Container
+
+```
+$ docker container create --name command yusrilarzaqi/command
+
+25887d8b04b0474c2ce59b22461423bda472ef9e34a9810a56c04c95053e05b7
+
+$ docker container start command
+
+command
+
+$ docker container logs command
+
+Hello World
+```
