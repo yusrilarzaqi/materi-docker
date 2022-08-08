@@ -1037,3 +1037,84 @@ $ docker container logs command
 
 Hello World
 ```
+
+### Label Instruction
+
+- Instruksi `LABEL` merupakan instruksi yang digunakan untuk menambahkan metadata ke dalam Docker Image yang kita buat.
+- Metadata adalah informasi tambahan, misal seperti nama aplikasi, pembuat, website, perusahaan, lisensi dan lain-lain.
+- Metadata hanya berguna sebagai informasi saja, tidak akan digunakan ketika kita menjalankan Docker Container.
+
+#### Label Instruction Format
+
+- Berikut adalah format instruksi `LABEL`.
+- `LABEL <key>=<value>`.
+- `LABEL <key1>=<value1> <key2>=<value2> ...`.
+
+#### Kode : LABEL Instruction
+
+```sh
+FROM alpine:3
+
+LABEL author="Yusril Arzaqi"
+LABEL company="STEKOM" website="https://stekom.ac.id"
+
+RUN mkdir hello
+RUN echo "Hello World" > "hello/world.txt"
+
+CMD cat "hello/world.txt"
+CMD ls .
+```
+
+#### Kode : Docker Build
+
+```sh
+docker build -t yusrilarzaqi/label label
+```
+
+```
+Sending build context to Docker daemon  2.048kB
+Step 1/7 : FROM alpine:3
+ ---> d7d3d98c851f
+Step 2/7 : LABEL author="Yusirl Arzaqi"
+ ---> Running in 17b2a717d745
+Removing intermediate container 17b2a717d745
+ ---> fc0f4996f57c
+Step 3/7 : LABEL company="STEKOM" website="https://www.stekom.ac.id"
+ ---> Running in 9245ca2b6b3f
+Removing intermediate container 9245ca2b6b3f
+ ---> d67669206eca
+Step 4/7 : RUN mkdir hello
+ ---> Running in e640e2f51e83
+Removing intermediate container e640e2f51e83
+ ---> 967a61c9ceff
+Step 5/7 : RUN echo "Hello World" > "hello/world.txt"
+ ---> Running in 2ccd99239697
+Removing intermediate container 2ccd99239697
+ ---> 56f427941ba8
+Step 6/7 : CMD cat "hello/world.txt"
+ ---> Running in 7cfc7313db48
+Removing intermediate container 7cfc7313db48
+ ---> f5c07d9f0ac7
+Step 7/7 : CMD ls .
+ ---> Running in 84507f4ea6a6
+Removing intermediate container 84507f4ea6a6
+ ---> 9771cf33887a
+Successfully built 9771cf33887a
+Successfully tagged yusrilarzaqi/label:latest
+```
+
+#### Kode : Inspect Docker Image
+
+```sh
+docker image inspect yusrilarzaqi/label
+```
+
+```
+"Labels": {
+  "author": "Yusirl Arzaqi",
+  "company": "STEKOM",
+  "website": "https://www.stekom.ac.id"
+}
+```
+
+

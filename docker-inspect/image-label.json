@@ -1,0 +1,98 @@
+[
+    {
+        "Id": "sha256:9771cf33887aaf7a2380097b3b52f23b3b421089740d38f5647209a8c8cef7d1",
+        "RepoTags": [
+            "yusrilarzaqi/label:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:f5c07d9f0ac7ccffbbd1cb64c2f5e61af176ca0ccb645cb4021cedd17e7a6d0c",
+        "Comment": "",
+        "Created": "2022-08-08T12:26:35.161997396Z",
+        "Container": "84507f4ea6a6e845dd65d28904202f8474487d8baa5d4a18807e989cc31de1fd",
+        "ContainerConfig": {
+            "Hostname": "84507f4ea6a6",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"/bin/sh\" \"-c\" \"ls .\"]"
+            ],
+            "Image": "sha256:f5c07d9f0ac7ccffbbd1cb64c2f5e61af176ca0ccb645cb4021cedd17e7a6d0c",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "author": "Yusirl Arzaqi",
+                "company": "STEKOM",
+                "website": "https://www.stekom.ac.id"
+            }
+        },
+        "DockerVersion": "20.10.17",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "ls ."
+            ],
+            "Image": "sha256:f5c07d9f0ac7ccffbbd1cb64c2f5e61af176ca0ccb645cb4021cedd17e7a6d0c",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "author": "Yusirl Arzaqi",
+                "company": "STEKOM",
+                "website": "https://www.stekom.ac.id"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 5524258,
+        "VirtualSize": 5524258,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/8d2e3c30e3e33e27cf5232fde6993b19fc8dd61145cd4192c8ed5124d96da344/diff:/var/lib/docker/overlay2/7fca18a08b2496d002a53dc73479c21a3eaac127ca4d80a2bae2c42d2dce31d5/diff",
+                "MergedDir": "/var/lib/docker/overlay2/bb001b74eb81159f10a9e7f29bf576bf4b7c466401be5f596315ab32b3ba408d/merged",
+                "UpperDir": "/var/lib/docker/overlay2/bb001b74eb81159f10a9e7f29bf576bf4b7c466401be5f596315ab32b3ba408d/diff",
+                "WorkDir": "/var/lib/docker/overlay2/bb001b74eb81159f10a9e7f29bf576bf4b7c466401be5f596315ab32b3ba408d/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:ec34fcc1d526fba48f7f88e4ec765fccc17d4692570db85cf32d9d6b020330f2",
+                "sha256:e5bd3b351f1d607f0faa16127e9f4e8aee2fb9070390e936e58e444ad755aed3",
+                "sha256:07bfa82c780d6443c08f8e0d3ba04169a9e2b82890d14d1ac62c382874f83410"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2022-08-08T19:26:36.023230025+07:00"
+        }
+    }
+]

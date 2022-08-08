@@ -8,11 +8,15 @@
 # docker build -t yusrilarzaqi/run run  --progress=plain --no-cache
 
 # build , run and command
-docker build -t yusrilarzaqi/command command
-
+#docker build -t yusrilarzaqi/command command
 # create new container
-docker container create --name command yusrilarzaqi/command
+#docker container create --name command yusrilarzaqi/command
 # start container command
-docker container start command
+#docker container start command
 # log dari container command
-docker container logs command
+#docker container logs command
+
+
+#### DOCKER LABEL ####
+docker build -t yusrilarzaqi/label label
+
