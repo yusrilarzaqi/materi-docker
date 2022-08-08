@@ -26,6 +26,8 @@
   - Volume Backup.
   - Volume Restore
   - Network
+- Container:
+  - Network.
 - Dan lain-lain.
 
 ### Pengenalan Container
@@ -599,7 +601,7 @@ docker network create --driver namaDriver namaNetwork
 
 #### Kode : Membuat Network
 
-```sh
+```
 $ docker network create --driver bridge contohnetwork
 
 0d2cee0ee546dd400b0e6262899ad4b25f0ef4dfdd11f1b3e8bd55bf95a98b5f
@@ -625,7 +627,7 @@ docker network rm namaNetwork
 
 #### Kode : Menghapus Network
 
-```sh
+```
 $ docker network rm contohnetwork
 
 contohnetwork
@@ -637,3 +639,64 @@ db7a63dc66ab   bridge          bridge    local
 477a49b3d086   host            host      local
 53dbcbfb730b   none            null      local
 ```
+
+### Container Network
+
+- Setelah kita membuat Network, kita bisa menambahkan container ke network.
+- Container yang terdapat di dalam network yang sama bisa saling berkomunikasi (tergantung jenis driver networknya).
+- Container bisa mengakses container lain dengan menyebutkan hostname dari container nya, yaitu nama container nya.
+
+#### Membuat Container dengan Network
+
+- Untuk menambahkan container ke network, kita bisa menambahkan perintah `--network` ketika membuat container, misal :
+
+```sh
+docker container create --name namaContainer --network namaNetwork image:tag
+```
+
+#### Kode : Membuat Container dengan Network
+
+```
+$ docker network create --driver bridge mongonetwork
+
+8ced4d99282e8495fe4f05c28db4cb6e187562966052bd2e4f2a2220bb68d568
+
+$ docker container create --name mongodb --network mongonetwork --env MONGO_INITDB_ROOT_USERNAME=yusril --env MONGO_INITDB_ROOT_PASSWORD=yusril123 mongo:latest
+
+129453cd06a9f3604cdb1495a2f5de744fa95476d07f2a51533460c20229cdf5
+
+$ docker container create --name mongodbexpress --network mongonetwork --publish 8081:8081 --env ME_CONFIG_MONGODB_URL="mongodb://yusril:yusril123@mongodb:27017/" mongo-express:latest
+
+f4896be51fe9c2f38aa549e6c6db8fb9c32ae834152a24f7a7c9f14e5798c58e
+
+$ docker container start mongodb
+
+mongodb
+
+$ docker container start mongoexpress
+
+mongoexpress
+```
+
+#### Menghapus Container dari Network
+
+- Jika diperlukan, kita juga bisa menghapus container dari network dengan perintah :
+
+```sh
+docker network disconnect namaNetwork namaContainer
+```
+
+#### Kode : Menghapus Container dari Network
+
+```sh
+docker network disconnect mongonetwork mongodb
+```
+
+#### Menambahkan Container ke Network
+
+- Jika containernya sudah terlanjur dibuat, kita juga bisa menambahkan container yang sudah dibuat ke network dengan perintah :
+
+```sh
+docker network connect namaNetwork namaContainer
+```
+
