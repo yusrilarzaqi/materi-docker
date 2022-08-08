@@ -18,5 +18,16 @@
 
 
 #### DOCKER LABEL ####
-docker build -t yusrilarzaqi/label label
+# docker build -t yusrilarzaqi/label label
+
+#### DOCKER ADD ####
+# docker build -t yusrilarzaqi/add add
+
+docker container create --name add yusrilarzaqi/add
+
+docker container start add
+
+docker container logs add 
+
+
 

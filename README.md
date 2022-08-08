@@ -1117,4 +1117,111 @@ docker image inspect yusrilarzaqi/label
 }
 ```
 
+### Add Instruction
 
+- `ADD` adalah instruksi yang dapat digunakan untuk menambahkan file dari source ke dalam folder destination di Docker Image.
+- Perintah `ADD` bisa mendeteksi adalah sebuah file source merupakan file kompress seperti tar.gz, gzip, dan lain-lain. Jika mendeteksi file source adalah berupa file kompress, maka secara otomatis file tersebut akan di extract dalam folder destination.
+- Perintah `ADD` juga bisa mendukung banyak penambahan file sekaligus.
+- Penambahan banyak file sekaligus di instruksi `ADD` menggunakan Pattern di [Go-Lang](https://pkg.go.dev/path/filepath#Match)
+
+```
+pattern:
+	{ term }
+term:
+	'*'         matches any sequence of non-Separator characters
+	'?'         matches any single non-Separator character
+	'[' [ '^' ] { character-range } ']'
+	            character class (must be non-empty)
+	c           matches character c (c != '*', '?', '\\', '[')
+	'\\' c      matches character c
+
+character-range:
+	c           matches character c (c != '\\', '-', ']')
+	'\\' c      matches character c
+	lo '-' hi   matches character c for lo <= c <= hi
+```
+
+#### Add Instruction Format
+
+- Instruksi `ADD` memiliki format sebagai berikut :
+
+```
+ADD source destination
+```
+
+- Contoh :
+
+```dockerfile
+ADD world.txt hello # menambah file world.txt ke folder hello
+ADD *.txt hello # menambah semua file.txt ke folder hello
+```
+
+#### Kode : ADD Instruction
+
+```dockerfile
+FROM alpine:3
+
+RUN mkdir hello
+
+ADD text/*.txt hello/
+
+CMD cat "hello/world.txt"
+```
+
+#### Kode : Docker Build
+
+```sh
+docker build -t yusrilarzaqi/add add
+```
+
+```
+Sending build context to Docker daemon  5.632kB
+Step 1/4 : FROM alpine:3
+ ---> d7d3d98c851f
+Step 2/4 : RUN mkdir hello
+ ---> Using cache
+ ---> 328011ce1502
+Step 3/4 : ADD ./text/*.txt hello/
+ ---> 4982967d7ee9
+Step 4/4 : CMD cat "hello/*.txt"
+ ---> Running in 0fa9acf4ed3a
+Removing intermediate container 0fa9acf4ed3a
+ ---> 00a3c9269641
+Successfully built 00a3c9269641
+Successfully tagged yusrilarzaqi/add:latest
+```
+
+```sh
+docker image ls
+```
+
+```
+REPOSITORY             TAG       IMAGE ID       CREATED          SIZE
+yusrilarzaqi/add       latest    00a3c9269641   46 seconds ago   5.52MB
+```
+
+#### Kode : Docker Container
+
+**Membuat container dari image add** 
+```sh
+docker container create --name add yusrilarzaqi/add
+```
+
+```
+ba49019e8e14ec14059cbcd978593908d6a3b300854f451fc2a6d7de0bd1b77e
+```
+ 
+**Menjalankan Container add** 
+```sh
+docker container start add
+```
+
+```
+add
+```
+
+**Melihat logs Container add** 
+```sh
+docker container logs add 
+
+```
