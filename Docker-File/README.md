@@ -487,3 +487,59 @@ Successfully tagged yusrilarzaqi/copy:latest
 copy
 Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 ```
+
+## .dockerignore File
+
+- Saat kita melakukan `ADD` atau `COPY` dari file soruce, pertama Docker akan membaca file yang bernama `.dockerignore`.
+- File `.dockerignore` ini seperti file `.gitignore`, dimana kita bisa menyebutkan file-file apa saja yang ingin kita ignore (hiraukan).
+- Artinya jika ada file yang kita sebut didalam file `.dockerignore`, secara otomatis file tersebut tidak akan di `ADD` atau di `COPY`.
+- File `.dockerignore` juga mendukung ignore folder atau menggunakan regular expression.
+
+### Kode : .dockerignore File
+
+```dockerignore
+text/*.log
+text/temp
+```
+
+```dockerfile
+FROM apline:3
+
+RUN mkdir hello
+ADD text/* hello
+
+CMD ls -l hello
+```
+
+```sh
+#!/bin/bash
+
+docker build -t yusrilarzaqi/ignore .
+
+docker container create --name ignore yusrilarzaqi/ignore
+
+docker container start ignore
+
+docker container logs ignore
+```
+
+```
+Sending build context to Docker daemon  5.632kB
+Step 1/4 : FROM alpine:3
+ ---> d7d3d98c851f
+Step 2/4 : RUN mkdir hello
+ ---> Using cache
+ ---> 328011ce1502
+Step 3/4 : ADD text/* hello
+ ---> bf2ce6750df1
+Step 4/4 : CMD ls -l hello
+ ---> Running in 9c51ab20007b
+Removing intermediate container 9c51ab20007b
+ ---> 04f5baf68d02
+Successfully built 04f5baf68d02
+Successfully tagged yusrilarzaqi/ignore:latest
+12f1a3f8bafbaf9c5b0bd0aba127920f931a53292a4ec842a28374ca3a1a7b19
+ignore
+total 4
+-rw-r--r--    1 root     root           103 Aug 11 12:22 note.txt
+```
