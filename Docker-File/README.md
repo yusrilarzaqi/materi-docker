@@ -543,3 +543,109 @@ ignore
 total 4
 -rw-r--r--    1 root     root           103 Aug 11 12:22 note.txt
 ```
+
+## Expose Instruction
+
+- `EXPOSE` adalah instruksi untuk memberitahu bahwa container akan listen port pada nomor dan portocol tertentu.
+- Instruksi `EXPOSE` tidak akan mempublish port apapun sebenarnya, instruksi `EXPOSE` hanya digunakan sebagai dokumentasi untuk memberitahu yang membuat Docker Container
+
+### Expose Instruction Format
+
+- Berikut adalah format untuk instruksi `EXPOSE` :
+- `EXPOSE port # default nya menggunakan TCP`.
+- `EXPOSE port/tcp`.
+- `EXPOSE port/udp`.
+
+### Kode : Hello World Go-Lang Web
+
+- [Hello World Go-Lang Web](https://gist.githubusercontent.com/khannedy/9262c7784a9ef65ced9dac712822a853/raw/fb5108e45d5793a975f877acbb5038da01069410/main.go)
+- Simpan dalam file main.go
+
+### Kode : Expose Instruction
+
+```dockerfile
+FROM golang:1.18-alpine
+
+RUN mkdir app
+COPY main.go app
+
+EXPOSE 8080
+
+CMD go run app/main.go
+```
+
+```sh
+#!/bin/bash
+
+docker build -t yusrilarzaqi/expose .
+
+docker image inspect yusrilarzaqi/expose
+```
+
+```
+Step 1/5 : FROM golang:1.18-alpine
+1.18-alpine: Pulling from library/golang
+213ec9aee27d: Pull complete
+5299e6f78605: Pull complete
+1cab0e43db0a: Pull complete
+af72e8bb74db: Pull complete
+3a421caacf35: Pull complete
+Digest: sha256:8e45e2ef37d2b6d98900392029db2bc88f42c0f2a9a8035fa7da90014698e86b
+Status: Downloaded newer image for golang:1.18-alpine
+ ---> bacc2f10e6e1
+Step 2/5 : RUN mkdir app
+ ---> Running in 3868726cec64
+Removing intermediate container 3868726cec64
+ ---> c31d758f146d
+Step 3/5 : COPY main.go app
+ ---> 9278d1ac3006
+Step 4/5 : EXPOSE 8080
+ ---> Running in 359af33b5fcb
+Removing intermediate container 359af33b5fcb
+ ---> 61081863f7c5
+Step 5/5 : CMD go run app/main.go
+ ---> Running in 050e562a99bd
+Removing intermediate container 050e562a99bd
+```
+
+### Kode : Docker Container
+
+```sh
+#!/bin/bash
+
+docker build -t yusrilarzaqi/expose .
+
+docker container create --name expose -p 8080:8080 yusrilarzaqi/expose
+
+docker container start expose
+
+docker container ls
+```
+
+```
+Sending build context to Docker daemon  8.704kB
+Step 1/5 : FROM golang:1.18-alpine
+ ---> bacc2f10e6e1
+Step 2/5 : RUN mkdir app
+ ---> Running in d967a63ad7f3
+Removing intermediate container d967a63ad7f3
+ ---> cece1fba7ad0
+Step 3/5 : COPY main.go app
+ ---> 91610b561b12
+Step 4/5 : EXPOSE 8080
+ ---> Running in d5c20506c2d7
+Removing intermediate container d5c20506c2d7
+ ---> 73f6911bc527
+Step 5/5 : CMD go run app/main.go
+ ---> Running in 8d7866419635
+Removing intermediate container 8d7866419635
+ ---> fcc212f5ed0f
+Successfully built fcc212f5ed0f
+Successfully tagged yusrilarzaqi/expose:latest
+8d0e92bde7f0c58c73d1a4b1964fb3d4bfe5a1fb8fc01858f3459b831072b84e
+expose
+CONTAINER ID   IMAGE                 COMMAND                  CREATED        STATUS                  PORTS                                       NAMES
+8d0e92bde7f0   yusrilarzaqi/expose   "/bin/sh -c 'go run …"   1 second ago   Up Less than a second   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   expose
+```
+
+## Environment Variable Instruction
