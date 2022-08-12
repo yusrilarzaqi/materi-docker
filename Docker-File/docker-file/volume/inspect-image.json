@@ -1,0 +1,107 @@
+[
+	{
+		"Id": "sha256:ceea93c206b3604e407645a749f4a145d41d21d0139ad0798d7a3f2756b3ce55",
+		"RepoTags": ["yusrilarzaqi/volume:latest"],
+		"RepoDigests": [],
+		"Parent": "sha256:556b9b029f44bf85d2aa018b463739025b7372e0c4a00033547c570f4ac38bab",
+		"Comment": "",
+		"Created": "2022-08-12T03:07:36.297926221Z",
+		"Container": "2ba45441360b695bd8c84b67d7ad30874548c0af908ce5d3a01cc91c91496c9d",
+		"ContainerConfig": {
+			"Hostname": "2ba45441360b",
+			"Domainname": "",
+			"User": "",
+			"AttachStdin": false,
+			"AttachStdout": false,
+			"AttachStderr": false,
+			"ExposedPorts": {
+				"8080/tcp": {}
+			},
+			"Tty": false,
+			"OpenStdin": false,
+			"StdinOnce": false,
+			"Env": [
+				"PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+				"GOLANG_VERSION=1.18.5",
+				"GOPATH=/go",
+				"APP_PORT=8080",
+				"APP_DATA=/logs"
+			],
+			"Cmd": [
+				"/bin/sh",
+				"-c",
+				"#(nop) ",
+				"CMD [\"/bin/sh\" \"-c\" \"go run app/main.go\"]"
+			],
+			"Image": "sha256:556b9b029f44bf85d2aa018b463739025b7372e0c4a00033547c570f4ac38bab",
+			"Volumes": {
+				"/logs": {}
+			},
+			"WorkingDir": "/go",
+			"Entrypoint": null,
+			"OnBuild": null,
+			"Labels": {}
+		},
+		"DockerVersion": "20.10.17",
+		"Author": "",
+		"Config": {
+			"Hostname": "",
+			"Domainname": "",
+			"User": "",
+			"AttachStdin": false,
+			"AttachStdout": false,
+			"AttachStderr": false,
+			"ExposedPorts": {
+				"8080/tcp": {}
+			},
+			"Tty": false,
+			"OpenStdin": false,
+			"StdinOnce": false,
+			"Env": [
+				"PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+				"GOLANG_VERSION=1.18.5",
+				"GOPATH=/go",
+				"APP_PORT=8080",
+				"APP_DATA=/logs"
+			],
+			"Cmd": ["/bin/sh", "-c", "go run app/main.go"],
+			"Image": "sha256:556b9b029f44bf85d2aa018b463739025b7372e0c4a00033547c570f4ac38bab",
+			"Volumes": {
+				"/logs": {}
+			},
+			"WorkingDir": "/go",
+			"Entrypoint": null,
+			"OnBuild": null,
+			"Labels": null
+		},
+		"Architecture": "amd64",
+		"Os": "linux",
+		"Size": 327939061,
+		"VirtualSize": 327939061,
+		"GraphDriver": {
+			"Data": {
+				"LowerDir": "/var/lib/docker/overlay2/efcac106180ab714641ce3c6309f0a72c5a761036603d655925a052894cd8ee9/diff:/var/lib/docker/overlay2/234be0d704d6963807ca387a99cfa9642b6442ae11d183bf8ae87b41ce121ac9/diff:/var/lib/docker/overlay2/e0a6a37936dcfe99b29983b7dbae8d8202ead00e4fc23300a2419d5615560813/diff:/var/lib/docker/overlay2/dd4e80443d00ad4bd9402e56eb6fd6fca68bf01cf1c93ed1438237a9b7559b27/diff:/var/lib/docker/overlay2/dc560076e10b1c33968558674f8b6201d89b387efd18855c746349a3a541d60d/diff:/var/lib/docker/overlay2/c307a9eb9182adf942b9a20d1c83796567552bd2c41b8cefd1d76ea97db6587e/diff:/var/lib/docker/overlay2/0bb9c2e97592a7e010cbcd1094398e1f3eaebdb52e3cee3365b95a6abc2d988d/diff",
+				"MergedDir": "/var/lib/docker/overlay2/bc1faaf03482b941c0a96ba6d248ebda60f6e6bb4aedd30aec4ef0de9da3c418/merged",
+				"UpperDir": "/var/lib/docker/overlay2/bc1faaf03482b941c0a96ba6d248ebda60f6e6bb4aedd30aec4ef0de9da3c418/diff",
+				"WorkDir": "/var/lib/docker/overlay2/bc1faaf03482b941c0a96ba6d248ebda60f6e6bb4aedd30aec4ef0de9da3c418/work"
+			},
+			"Name": "overlay2"
+		},
+		"RootFS": {
+			"Type": "layers",
+			"Layers": [
+				"sha256:994393dc58e7931862558d06e46aa2bb17487044f670f310dffe1d24e4d1eec7",
+				"sha256:145b66c455f767d75b75e48c372bdd676c50c85bc659468e4e15705d01f8f850",
+				"sha256:e6cfcb7343484af09dcd3e3875abdaf5dac20e12fa25a19744dd2c9ceca03cf9",
+				"sha256:eeadc139c79d7a570425e194799972aaa6e2205b04041bf354e04af29072b495",
+				"sha256:b5b8829d1ad28d19c52848ce92052081febb61b573fe75de7b3f0d86bd290d66",
+				"sha256:5ba6dcb26ce1495e842bd34b6fd5f26192d062a14bfd75cb0360f4c682e51622",
+				"sha256:4ea8a8e1361fe621da9c362e16792faedcc6a15671f222c660141a1e24cd8428",
+				"sha256:871fbccb3163f2c0ebc15412c2fa2b0a96c8d96881852fc7ed077a398b6ed6f2"
+			]
+		},
+		"Metadata": {
+			"LastTagTime": "2022-08-12T10:07:36.349929774+07:00"
+		}
+	}
+]
